@@ -1,0 +1,38 @@
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    hostname: localhost
+spring:
+  cloud:
+    gateway:
+      routes:
+      - id: EMPLOYEESERVICE
+        uri: lb://localhost:8061   
+        predicates:
+        - Path=/employees/**
+        filters:
+        - name: CircuitBreaker
+          args:
+            name: Employee-Servce
+            fallbackuri: forward:/employeeServiceFallback
+        
+      - id: Department-SERVICE
+        uri: http://localhost:8062
+        predicates:
+        - Path=/departments/**
+        
+        
+      - id: PRODUCT-SERVICE
+        uri: http://localhost:8059
+        predicates:
+        - Path=/product/**
+
+        
+
+    
+        
+        

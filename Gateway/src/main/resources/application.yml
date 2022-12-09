@@ -1,0 +1,23 @@
+spring:
+  cloud:
+    gateway:
+      routes:
+      - id: employeeService
+        uri: http://localhost:8072
+        predicates:
+        - Path= /employees/**
+
+      - id: departmentService
+        uri: http://localhost:8071
+        predicates:
+        - Path= /departments/**
+        
+            
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+    instance:
+       hostname:localhost

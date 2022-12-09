@@ -1,0 +1,16 @@
+spring:
+  cloud:
+    config:
+      enabled: true
+      uri: http://localhost:9296
+    gateway:
+      routes:
+      - id: Student-service
+        uri: http://localhost:8050
+        predicates:
+        - Path=/student/**
+        
+      - id: course-service
+        uri: http://localhost:8051
+        predicates:
+        - Path=/course/**

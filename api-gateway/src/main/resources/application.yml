@@ -1,0 +1,24 @@
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: STUDENTSERVICE
+          uri: http://localhost:8090
+          predicates:
+          - Path=/students/**
+          
+        - id: MARKSSERVICE
+          uri: http://localhost:8091/
+          predicates:
+          - Path=/marks/**
+          
+            
+            
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+    instance:
+       hostname:localhost

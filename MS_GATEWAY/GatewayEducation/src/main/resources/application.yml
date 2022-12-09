@@ -1,0 +1,29 @@
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url: 
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    hostname: localhost
+
+
+
+
+
+
+
+
+spring:
+  cloud:
+    gateway:
+      routes:
+      - id: Student-service
+        uri: http://localhost:8050
+        predicates:
+        - Path=/student/**
+        
+      - id: course-service
+        uri: http://localhost:8051
+        predicates:
+        - Path=/course/**
