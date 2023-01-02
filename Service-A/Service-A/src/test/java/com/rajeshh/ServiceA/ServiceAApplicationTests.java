@@ -8,6 +8,7 @@ class ServiceAApplicationTests {
 
 	@Test
 	void contextLoads() {
+		System.out.println("Context Loading");
 	}
-
+	
 }
